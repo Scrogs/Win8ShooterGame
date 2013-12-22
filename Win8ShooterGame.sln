@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win8ShooterGame", "Win8ShooterGame\Win8ShooterGame.csproj", "{A6C0C45A-55B0-4F23-B9FC-B47F9813A2C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win8ShooterGame", "Win8ShooterGame.csproj", "{A6C0C45A-55B0-4F23-B9FC-B47F9813A2C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

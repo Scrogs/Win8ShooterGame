@@ -141,6 +141,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Content\Graphics\player.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Win8ShooterGame_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
