@@ -32,6 +32,14 @@ namespace Win8ShooterGame
         //A movement speed for the player
         float playerMoveSpeed;
 
+        // Image used to display the static background
+        Texture2D mainBackground;
+        Rectangle rectBackground;
+
+        float scale = 1f;
+        private ParallaxingBackground bgLayer1;
+        private ParallaxingBackground bgLayer2;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -50,6 +58,10 @@ namespace Win8ShooterGame
 
             //Initialize the player class
             player = new Player();
+
+            //Background
+            bgLayer1 = new ParallaxingBackground();
+            bgLayer2 = new ParallaxingBackground();
 
             //Set a constant player move speed
             playerMoveSpeed = 8.0f;
@@ -80,6 +92,12 @@ namespace Win8ShooterGame
             Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
 
             player.Initialize(playerAnimation, playerPosition);
+
+            // Load the parallaxing background
+            bgLayer1.Initialize(Content, "Graphics/bgLayer1", GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, -1);
+            bgLayer2.Initialize(Content, "Graphics/bgLayer2", GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, -2);
+
+            mainBackground = Content.Load<Texture2D>("Graphics/mainbackground");
         }
 
         /// <summary>
@@ -110,6 +128,10 @@ namespace Win8ShooterGame
 
             //Update the player
             UpdatePlayer(gameTime);
+
+            // Update the parallaxing background
+            bgLayer1.Update(gameTime);
+            bgLayer2.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -183,6 +205,13 @@ namespace Win8ShooterGame
 
             // Start drawing
             _spriteBatch.Begin();
+
+            //Draw the Main Background Texture
+            _spriteBatch.Draw(mainBackground, rectBackground, Color.White);
+
+            // Draw the moving background
+            bgLayer1.Draw(_spriteBatch);
+            bgLayer2.Draw(_spriteBatch);
 
             // Draw the Player
             player.Draw(_spriteBatch);

@@ -15,6 +15,8 @@ namespace Win8ShooterGame
 
         // The speed which the background is moving
         int speed;
+        int bgHeight;
+        int bgWidth;
 
         public void Initialize(ContentManager content, String texturePath, int screenWidth, int screenHeight, int speed)
         {
@@ -40,14 +42,44 @@ namespace Win8ShooterGame
             }
         }
 
-        public void Update()
+        public void Update(GameTime gametime)
         {
+            // Update the positions of the background
+            for (int i = 0; i < positions.Length; i++)
+            {
+                // Update the position of the screen by adding the speed
+                positions[i].X += speed;
 
+                // If the speed has the background moving to the left
+                if (speed <= 0)
+                {
+
+                    // Check the texture is out of view then put that texture at the end of the screen
+                    if (positions[i].X <= -texture.Width)
+                    {
+                        positions[i].X = texture.Width * (positions.Length - 1);
+                    }
+                }
+
+                // If the speed has the background moving to the right
+                else
+                {
+                    // Check if the texture is out of view then position it to the start of the screen
+                    if (positions[i].X >= texture.Width * (positions.Length - 1))
+                    {
+                        positions[i].X = -texture.Width;
+                    }
+                }
+            }
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-
+            for (int i = 0; i < positions.Length; i++)
+            {
+                Rectangle rectBg = new Rectangle((int)positions[i].X, (int)positions[i].Y, bgWidth, bgHeight);
+                spriteBatch.Draw(texture, rectBg, Color.White);
+            }
         }
     }
 }

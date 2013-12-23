@@ -106,8 +106,8 @@ namespace Win8ShooterGame
             sourceRect = new Rectangle(currentFrame * FrameWidth, 0, FrameWidth, FrameHeight);
 
             // Grab the correct frame in the image strip by multiplying the currentFrame index by the frame width
-            destinationRect = new Rectangle((int)Position.X - (int)(FrameWidth * scale) / 2,
-            (int)Position.Y - (int)(FrameHeight * scale) / 2,
+            destinationRect = new Rectangle((int)Position.X,
+                                            (int)Position.Y,
             (int)(FrameWidth * scale),
             (int)(FrameHeight * scale));
         }
